@@ -1,7 +1,8 @@
 package com.example.fireapp.service
 
 import com.example.fireapp.ui.screens.Login.LoginUiState
-import com.example.fireapp.ui.screens.Login.register.RegisterEvent
+import com.example.fireapp.ui.screens.Register.RegisterEvent
+import com.example.fireapp.ui.screens.Register.RegisterState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.userProfileChangeRequest
@@ -22,7 +23,7 @@ class AuthService(
         }
     }
 
-    fun register(email: String, username: String, password: String) {
+    fun register(state: RegisterState) {
         auth.createUserWithEmailAndPassword(state.email, state.password)
             .addOnFailureListener {
             state.error = it.message ?: "An error occurred"
